@@ -1,0 +1,2 @@
+## Java Version Changer
+Easily change your active Java version on your computer. This also modifies environment variables to match new selection. Be sure to restart any programs that use Java afterwards!
