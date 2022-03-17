@@ -9,8 +9,42 @@ static void BeginApp()
     if (javaVersions == null)
     {
         Console.WriteLine("(None were found on your system!)");
+    } else
+    {
+        Console.WriteLine(JavaVersion.stringVersions(javaVersions));
+        Console.WriteLine(EnvironmentVariableManager.GetPath());
     }
-    Console.WriteLine(JavaVersion.stringVersions(javaVersions));
+    Console.WriteLine("Want to switch versions? Y/N");
+    string input = ReceiveInput();
+    if (input.Equals("Y") || input.Equals("y"))
+    {
+        // If user wants to change java version, ask for which one
+        int counter = 0;
+        foreach (JavaVersion version in javaVersions)
+        {
+            Console.WriteLine("[" + counter + "]" + version.Name + " (" + version.Path + ")");
+            counter++;
+        }
+        int selection = int.Parse(ReceiveInput());
+        if (EnvironmentVariableManager.EditPath(javaVersions[selection]))
+        {
+            Console.WriteLine("Success!");
+        } else
+        {
+            Console.WriteLine("Failure!");
+        }
+    } else
+    {
+        Console.WriteLine("End of Program...");
+        Environment.Exit(0);
+    }
+}
+
+static string ReceiveInput()
+{
+    string userSelection = Console.ReadLine();
+    if (userSelection == null) ReceiveInput();
+    return userSelection;
 }
 
 class JavaVersion
@@ -32,14 +66,14 @@ class JavaVersion
         try
         {
             di64 = new DirectoryInfo("C:\\Program Files\\Java").GetDirectories();
-        } catch (DirectoryNotFoundException directoryNotFoundException) {
+        } catch (DirectoryNotFoundException) {
             success[0] = false;
         }
         try
         {
             dix86 = new DirectoryInfo("C:\\Program Files (x86)\\Java").GetDirectories();
         }
-        catch (DirectoryNotFoundException directoryNotFoundException) {
+        catch (DirectoryNotFoundException) {
             success[1] = false;
         }
 
@@ -99,6 +133,4 @@ class JavaVersion
     {
         return this.Name + " -> " + this.Path;
     }
-
-
 }
