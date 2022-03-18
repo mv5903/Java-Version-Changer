@@ -13,7 +13,6 @@ class EnvironmentVariableManager
             {
                 string[] str = s.Split('\\');
                 string version = str[str.Length - 2];
-                Console.WriteLine(string.Join(";", str));
                 return "Your active Java Version is: " + version;
             } else if (s.Contains("C:\\Program Files\\Common Files\\Oracle"))
             {

@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics;
+using System.Security.Principal;
 
 BeginApp();
 
 static void BeginApp()
 {
+    if (!CheckAdmin()) Environment.Exit(0);
     JavaVersion[] javaVersions = JavaVersion.GetJavaVersions();
     Console.WriteLine("Installed Java Versions:");
     if (javaVersions == null)
@@ -38,6 +40,14 @@ static void BeginApp()
         Console.WriteLine("End of Program...");
         Environment.Exit(0);
     }
+}
+
+static bool CheckAdmin()
+{
+    WindowsIdentity id = WindowsIdentity.GetCurrent();
+    WindowsPrincipal principal = new WindowsPrincipal(id);
+
+    return principal.IsInRole(WindowsBuiltInRole.Administrator);
 }
 
 static string ReceiveInput()
