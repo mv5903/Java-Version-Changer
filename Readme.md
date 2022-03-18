@@ -10,3 +10,6 @@ Open the exe, then select which version you'd like to change to.<br>
 
 #### After
 ![After Running App](images/after.png)
+
+<br><br>
+Be sure to restart any programs that depend on Java after using this app!

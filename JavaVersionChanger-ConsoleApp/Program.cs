@@ -30,7 +30,8 @@ static void BeginApp()
         int selection = int.Parse(ReceiveInput());
         if (EnvironmentVariableManager.EditPath(javaVersions[selection]))
         {
-            Console.WriteLine("Success!");
+            Console.WriteLine("Success! You may now close this program.");
+            Console.ReadLine();
         } else
         {
             Console.WriteLine("Failure!");
