@@ -1,5 +1,5 @@
 ## Java Version Changer
-Easily change your active Java version on your computer. Useful for playing different Minecraft Versions, working with older versions of Java, or other instances. To use:<br>
+[WINDOWS ONLY for now] Easily change your active Java version on your computer. Useful for playing different Minecraft Versions, working with older versions of Java, or other instances. To use:<br>
 Open the exe, then select which version you'd like to change to.<br>
 
 #### Before
